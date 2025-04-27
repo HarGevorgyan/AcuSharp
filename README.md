@@ -1,5 +1,8 @@
 # 📦 AcuSharp
 
+[![NuGet](https://img.shields.io/nuget/v/AcuSharp.svg)](https://www.nuget.org/packages/AcuSharp/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 🚀 **AcuSharp – Your New Foundation for High-Quality Acumatica Development** 🚀
 
 > 💬 For questions, feedback, or suggestions, feel free to reach me directly on [LinkedIn](https://www.linkedin.com/in/har-gevorgyan).  
