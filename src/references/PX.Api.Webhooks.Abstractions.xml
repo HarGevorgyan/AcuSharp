@@ -1,0 +1,154 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PX.Api.Webhooks.Abstractions</name>
+    </assembly>
+    <members>
+        <member name="T:PX.Api.Webhooks.IWebhookHandler">
+            <summary>An interface for implementation of webhook processing.
+            An implementation class for this interface processes the requests passed to a particular URL.</summary>
+            <example>
+            You can find an example of the interface implementation on <a href="https://github.com/Acumatica/Help-and-Training-Examples/blob/HEAD/IntegrationDevelopment/Help/ConfiguringWebhooks/TogglWebhookHandler_Code/WebhookHandler/TogglWebhookHandler.cs" target="_blank">GitHub</a>.
+            </example>
+        </member>
+        <member name="M:PX.Api.Webhooks.IWebhookHandler.HandleAsync(PX.Api.Webhooks.WebhookContext,System.Threading.CancellationToken)">
+            <summary>Processes the webhook requests.</summary>
+            <param name="context">The information about the webhook invocation.</param>
+            <param name="cancellation">The cancellation token.</param>
+            <remarks>
+              <para>In the method implementation, you do the following:</para>
+              <list type="number">
+                <item>Process authentication information in the request.</item>
+                <item>Transform the data in the external format to the data that can be saved in Acumatica ERP.</item>
+                <item>Invoke graph methods that save the data in Acumatica ERP.</item>
+              </list>
+            </remarks>
+        </member>
+        <member name="T:PX.Api.Webhooks.WebhookContext">
+            <summary>The information about the webhook invocation, which contains
+            the incoming request, the response to be returned, and the information about the webhook.</summary>
+        </member>
+        <member name="P:PX.Api.Webhooks.WebhookContext.Definition">
+            <summary>The information about the webhook registration in Acumatica ERP.</summary>
+        </member>
+        <member name="P:PX.Api.Webhooks.WebhookContext.Request">
+            <summary>The information about the webhook request.</summary>
+        </member>
+        <member name="P:PX.Api.Webhooks.WebhookContext.Response">
+            <summary>The information about the webhook response.</summary>
+        </member>
+        <member name="P:PX.Api.Webhooks.WebhookContext.TraceIdentifier">
+            <summary>
+            The unique identifier, which is used to represent the webhook request in the trace log.
+            </summary>
+            <remarks>The identifier matches the identifier in <see cref="!:Microsoft.AspNetCore.Http.HttpContext"/>
+            if the identifier in HttpContext is specified.</remarks>
+        </member>
+        <member name="T:PX.Api.Webhooks.WebhookDefinition">
+            <summary>The information about the webhook registration in Acumatica ERP.</summary>
+        </member>
+        <member name="P:PX.Api.Webhooks.WebhookDefinition.Id">
+            <summary>The unique identifier that is used in the webhook URL.
+            The webhook URL is specified in the <b>URL</b> box on the Webhooks (SM304000) form.</summary>
+            <remarks>You can use this value to get additional information about the webhook from the database.
+            The value is the same as the value of the corresponding <see cref="!:PX.Api.Webhooks.DAC.WebHook.WebHookID"/> field.</remarks>
+        </member>
+        <member name="T:PX.Api.Webhooks.WebhookRequest">
+            <summary>The information about the webhook request.</summary>
+        </member>
+        <member name="P:PX.Api.Webhooks.WebhookRequest.Method">
+            <summary>
+            The HTTP method of the webhook request.
+            </summary>
+        </member>
+        <member name="P:PX.Api.Webhooks.WebhookRequest.Query">
+            <summary>
+            Gets the query value collection.
+            </summary>
+        </member>
+        <member name="P:PX.Api.Webhooks.WebhookRequest.Headers">
+            <summary>
+            The request headers.
+            </summary>
+        </member>
+        <member name="P:PX.Api.Webhooks.WebhookRequest.ContentLength">
+            <summary>
+            The Content-Length header.
+            </summary>
+        </member>
+        <member name="P:PX.Api.Webhooks.WebhookRequest.ContentType">
+            <summary>
+            The Content-Type header.
+            </summary>
+        </member>
+        <member name="P:PX.Api.Webhooks.WebhookRequest.Body">
+            <summary>
+            The request body as <see cref="T:System.IO.Stream"/>.
+            </summary>
+        </member>
+        <member name="M:PX.Api.Webhooks.WebhookRequest.CreateTextReader(System.Text.Encoding)">
+            <summary>
+            Provides <see cref="T:System.IO.TextReader"/> to read from the request body.
+            </summary>
+            <param name="defaultEncoding">The encoding to read the body in if the <c>Content-Type</c> header
+            does not contain <c>charset</c>. By default, <c>UTF-8</c> is used.</param>
+        </member>
+        <member name="M:PX.Api.Webhooks.WebhookRequest.CreateTextReaderCore(System.Text.Encoding)">
+            <summary>
+            Provides <see cref="T:System.IO.TextReader"/> to read from request body.
+            </summary>
+            <param name="encoding">Encoding to read the body in.</param>
+        </member>
+        <member name="T:PX.Api.Webhooks.WebhookResponse">
+            <summary>The information about the webhook response.</summary>
+        </member>
+        <member name="P:PX.Api.Webhooks.WebhookResponse.StatusCode">
+            <summary>
+            The HTTP response code.
+            </summary>
+        </member>
+        <member name="P:PX.Api.Webhooks.WebhookResponse.Headers">
+            <summary>
+            The response headers.
+            </summary>
+        </member>
+        <member name="P:PX.Api.Webhooks.WebhookResponse.ContentLength">
+            <summary>
+            The value for the <c>Content-Length</c> response header.
+            </summary>
+        </member>
+        <member name="P:PX.Api.Webhooks.WebhookResponse.ContentType">
+            <summary>
+            The value for the <c>Content-Type</c> response header.
+            </summary>
+        </member>
+        <member name="P:PX.Api.Webhooks.WebhookResponse.Body">
+            <summary>
+            The request body as <see cref="T:System.IO.Stream"/>.
+            </summary>
+        </member>
+        <member name="M:PX.Api.Webhooks.WebhookResponse.CreateTextWriter(System.String)">
+            <summary>
+            Provides <see cref="T:System.IO.TextWriter"/> to write to the request body with the default encoding
+            and sets the <c>Content-Type</c> header.
+            </summary>
+            <param name="mediaType">The media type to be specified in <c>Content-Type</c>.
+            By default, <c>application/json</c> is used.</param>
+            <remarks>The encoding and <c>charset</c> will be set to <c>UTF-8</c>.</remarks>
+        </member>
+        <member name="M:PX.Api.Webhooks.WebhookResponse.CreateTextWriter(System.String,System.Text.Encoding)">
+            <summary>
+            Provides <see cref="T:System.IO.TextWriter"/> to write to the request body with the specified encoding
+            and sets the <c>Content-Type</c> header.
+            </summary>
+            <param name="mediaType">The media type to be specified in <c>Content-Type</c>.</param>
+            <param name="encoding">The encoding to write the body in and to specify in <c>charset</c> in <c>Content-Type</c>.</param>
+        </member>
+        <member name="M:PX.Api.Webhooks.WebhookResponse.CreateTextWriterCore(System.Text.Encoding)">
+            <summary>
+            Provides <see cref="T:System.IO.TextWriter"/> to write to the request body.
+            </summary>
+            <param name="encoding">The encoding to write the body in.</param>
+        </member>
+    </members>
+</doc>

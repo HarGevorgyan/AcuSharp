@@ -1,0 +1,441 @@
+<?xml version="1.0"?>
+<doc>
+  <assembly>
+    <name>PX.Common</name>
+  </assembly>
+  <members>
+    <member name="M:PX.Common.PXBufferedResponse.WriteBinary(System.Byte[],System.Int64,System.Int64)">
+      <summary>
+            Writes binary data in streaming mode to the current response.
+            </summary>
+      <param name="data">Binary data to write.</param>
+      <param name="startIndex">Start index to write</param>
+    </member>
+    <member name="F:PX.Common.WebConfig.ParallelArmReportsCalculationMaxThreads">
+      <summary>
+            (Immutable) The setting that limits maximum amount of threads used for ARM reports parallel calculation.
+            If not specified then all threads will be used.
+            </summary>
+    </member>
+    <member name="F:PX.Common.WebConfig.ParallelizeAllDimensionsInArmReports">
+      <summary>
+            A flag that determines if ARM reports should use the legacy calculation approach and do parallel calculation by all report dimensions. <br />
+            The default is <see langword="false" />.
+            </summary>
+      <remarks>
+            This setting should not be used in normal circumstances. It is introduced as a safety measure for the optimization changes in ARM reports calculation. <br />
+            The old legacy calculation consisted of nested loops over all report dimensions where each loop was parallelized with <see cref="M:System.Threading.Tasks.Parallel.For(System.Int32,System.Int32,System.Action{System.Int32})" /> method. <br />
+            
+            Parallelizing more than one loop in general is not effective and the calculation was changed to pick the most suitable loop and parallelize only it. 
+            However, if some customer faces issues with the new approach then the support can enable this setting to swtich to a legacy calculation.
+            </remarks>
+    </member>
+    <member name="F:PX.Common.WebConfig.PortalSiteID">
+      <summary>
+            Identificator for Portal instances. Not used in ERP.
+            </summary>
+    </member>
+    <member name="T:PX.Common.IPXIdentity">
+      <summary>
+            Contains the context information for the current user identity.
+            </summary>
+    </member>
+    <member name="P:PX.Common.IPXIdentity.Username">
+      <summary>
+        <para>Returns the username for the current user.</para>
+        <para>Please note that the tenant ID is not returned as a part of the username;
+            it is returned by <see cref="P:PX.Common.IPXIdentity.TenantId" /> property.</para>
+      </summary>
+    </member>
+    <member name="P:PX.Common.IPXIdentity.TenantId">
+      <summary>
+            Returns Tenant ID (login name) for the current tenant,
+            or <see langword="null" /> if there is only a single tenant in the system.
+            </summary>
+    </member>
+    <member name="P:PX.Common.IPXIdentity.BranchId">
+      <summary>
+            Returns the ID of the current branch, or <see langword="null" />
+            if Multi-Branch Support feature is turned off or there are no branches in the system.
+            </summary>
+    </member>
+    <member name="P:PX.Common.IPXIdentity.Culture">
+      <summary>
+            Returns the current culture. If it is not defined, invariant culture should be returned.
+            </summary>
+    </member>
+    <member name="P:PX.Common.IPXIdentity.BusinessDate">
+      <summary>
+            Returns the current business date. If it is not defined, the current date should be returned.
+            </summary>
+    </member>
+    <member name="P:PX.Common.IPXIdentity.TimeZone">
+      <summary>
+            Returns the current time zone. If it is not defined, invariant timezone should be returned. 
+            </summary>
+    </member>
+    <member name="P:PX.Common.IPXIdentity.User">
+      <summary>
+            Returns the current user.
+            </summary>
+    </member>
+    <member name="P:PX.Common.IPXIdentityAccessor.Identity">
+      <summary>
+            Returns the information about the current user identity,
+            or <see langword="null" /> if there is no identity available.
+            </summary>
+    </member>
+    <member name="P:PX.Common.DaylightSavingTime.Start">
+      <summary>
+            Represents start date and time of the DST in the time zone's standard time.
+            </summary>
+    </member>
+    <member name="P:PX.Common.DaylightSavingTime.End">
+      <summary>
+            Represents end date and time of the DST in the time zone's daylight saving time.
+            </summary>
+    </member>
+    <member name="T:PX.Common.Mail.MailSender.DebugMailSender">
+      <summary>
+            Dumps all attachments to the ~/App_Data/Attachments folder.
+            </summary>
+    </member>
+    <member name="T:PX.Common.Parser.ExpressionContext">
+      <summary>
+            Provides the base class of the expression context.
+            </summary>
+    </member>
+    <member name="M:PX.Common.Parser.ExpressionContext.LineNbr(PX.Common.Parser.FunctionContext)">
+      <summary>
+            Return line number from PXContext (for import/export scenarios)
+            </summary>
+    </member>
+    <member name="M:PX.Common.Parser.ExpressionContext.Now(PX.Common.Parser.FunctionContext)">
+      <summary>
+            Gets the current DateTime object using user's timezone.
+            </summary>
+    </member>
+    <member name="M:PX.Common.Parser.ExpressionContext.NowUTC(PX.Common.Parser.FunctionContext)">
+      <summary>
+            Gets the current DateTime object.
+            </summary>
+    </member>
+    <member name="M:PX.Common.Parser.ExpressionContext.Today(PX.Common.Parser.FunctionContext)">
+      <summary>
+            Gets the current date using user's timezone.
+            </summary>
+    </member>
+    <member name="M:PX.Common.Parser.ExpressionContext.TodayUTC(PX.Common.Parser.FunctionContext)">
+      <summary>
+            Gets the current date.
+            </summary>
+    </member>
+    <member name="T:PX.Common.PdfPrinter.PdfPrinterConfigurationManager">
+      <summary>
+            Configure registry for AppPool user to use pdf printer 
+            </summary>
+    </member>
+    <member name="M:PX.Common.PdfPrinter.PdfPrinterConfigurationManager.SetDefaultPrinter(System.String,System.String)">
+      <summary>
+            Setting default printer for printer and disable windows printer managment
+            </summary>
+      <param name="printerRegistryName">Printe name and params. You can get this information from regkey: Software\Microsoft\Windows NT\CurrentVersion\Devices. Example (Acumatica_PrinterSite_Landscape, winspool,Ne08:)</param>
+      <param name="sid">User Security Identifier</param>
+      <returns>False if can't edit registry</returns>
+    </member>
+    <member name="M:PX.Common.PdfPrinter.PdfPrinterConfigurationManager.SetDefaultIEConfiguration(System.String)">
+      <summary>
+            Setting default IE configuration for printing. Remove header, footer and allow print background
+            </summary>
+      <param name="sid">User Security Identifier</param>
+      <returns>False if can't edit registry</returns>
+    </member>
+    <member name="M:PX.Common.PdfPrinter.PdfPrinterConfigurationManager.SetIEPageOrientation(System.String,System.Boolean)">
+      <summary>
+            Setting default page orientation for printing.
+            </summary>
+      <param name="printerName">Printer name from web.config</param>
+    </member>
+    <member name="M:PX.Common.PdfPrinter.PrinterWinApiCommands.ChangePrinterLayout(System.String,System.Boolean)">
+      <summary>
+            based on this demo https://www.codeproject.com/KB/dotnet/NET_Printer_Library.aspx?display=PrintAll
+            </summary>
+    </member>
+    <member name="P:PX.Common.PXHostingEnvironment.IsHosted">
+      <summary>
+            Gets a value indicating whether the current application domain is being hosted
+            by an <see cref="T:System.Web.Hosting.ApplicationManager" /> object, and the domain was not internally created
+            from code for service purposes.
+            </summary>
+      <remarks>
+        <para>Some parts of the system (like CustomizationProjectBuilder) may create an application domain from the code
+            by using <see cref="M:System.Web.Hosting.ApplicationHost.CreateApplicationHost(System.Type,System.String,System.String)" /> method.</para>
+        <para>In that case, <see cref="P:System.Web.Hosting.HostingEnvironment.IsHosted" /> is true but the list of running applications
+            is empty because the new application is created with <see cref="F:System.Web.Hosting.HostingEnvironmentFlags.HideFromAppManager" /> flag.</para>
+      </remarks>
+    </member>
+    <member name="M:PX.Common.PXReflectionSerializer.CloneSequence``1(System.Collections.Generic.IEnumerable{``0})">
+      <summary>
+            Returns a sequence where each element was cloned by <see cref="M:PX.Common.PXReflectionSerializer.Clone``1(``0)" /> method from corresponding one of the source sequence
+            </summary>
+    </member>
+    <member name="F:PX.Common.PXUrl.ScreenParams">
+      <summary>
+            The list of query string parameters that are preserved when logging a request URL for performance analysis.
+            </summary>
+      <remarks>Used in <see cref="M:PX.Common.PXUrl.GetScreenUrl(System.String)" /> that is called by Request Profiler to get a request URL. Not used anywhere else, including the actual user-facing page URL in the browser.</remarks>
+    </member>
+    <member name="M:PX.Common.PXUrl.IngoreAllQueryParameters(System.String)">
+      <summary>
+            Removes all the query parameters from the url.
+            </summary>
+    </member>
+    <member name="M:PX.Common.PXUrl.QuoteString(System.String)">
+      <summary>
+            Encode the specified string value for JavaScript.
+            </summary>
+    </member>
+    <member name="M:PX.Common.PXUrl.GetWebsiteUrl(System.Uri,System.Func{System.String,System.String})">
+      <summary>
+            Returns url for current website in format http(s)://hostname/
+            This url can be used in external links.
+            </summary>
+      <param name="requestUrl">Request URL</param>
+      <param name="headerProvider">Header provider. Must return <c>null</c> if header isn't found</param>
+    </member>
+    <member name="M:PX.Common.Tools.ToCodeString(System.Type,System.Boolean)">
+      <summary>
+            Converts a type instance to its code representation
+            </summary>
+      <remarks>
+        <code>typeof(Dictionary&lt;Tuple&lt;int, string&gt;, List&lt;double&gt;&gt;).ToCodeString()</code> will return "Dictionary&lt;Tuple&lt;int, string&gt;, List&lt;double&gt;&gt;"
+            </remarks>
+    </member>
+    <member name="M:PX.Common.Tools.GetInheritanceDepth(System.Type)">
+      <summary>
+            Returns a number representing the length of the inheritance chain for the current type
+            (count of base classes, including the current type itself).
+            </summary>
+      <remarks>Function will return 1 for <see cref="T:System.Object" /> type</remarks>
+      <param name="type">Inspecting type</param>
+    </member>
+    <member name="M:PX.Common.Tools.GetInheritanceChain(System.Type)">
+      <summary>
+            Returns a sequence of base classes which are present in the inheritance chain of the current type, 
+            starting with the current type itself and ending with an <see cref="T:System.Object" /> type.
+            </summary>
+      <param name="type">Inspecting type</param>
+    </member>
+    <member name="M:PX.Common.Tools.GetWeekNumber(System.DateTime)">
+      <summary>
+            ISO 8601
+            </summary>
+    </member>
+    <member name="M:PX.Common.Tools.GetWeekStart(System.Int32,System.Int32)">
+      <summary>
+            ISO 8601
+            </summary>
+    </member>
+    <member name="M:PX.Common.Tools.ToVoid``1(``0)">
+      <summary>
+            Suppress expression type
+            </summary>
+      <typeparam name="T">Expression original type</typeparam>
+      <param name="expression">Expression whose type should be suppressed</param>
+    </member>
+    <member name="M:PX.Common.Tools.Implies(System.Boolean,System.Func{System.Boolean})">
+      <summary>
+            Logical implication (lazy)
+            </summary>
+      <param name="antecedent">Antecedent</param>
+      <param name="consequent">Consequent</param>
+      <returns>
+        <c>false</c> if <paramref name="antecedent" /> is <c>true</c> 
+            and <paramref name="consequent" /> is <c>false</c>, otherwise - <c>true</c></returns>
+    </member>
+    <member name="M:PX.Common.Tools.Implies(System.Boolean,System.Boolean)">
+      <summary>
+            Logical implication (eager)
+            </summary>
+      <param name="antecedent">Antecedent</param>
+      <param name="consequent">Consequent</param>
+      <returns>
+        <c>false</c> if <paramref name="antecedent" /> is <c>true</c> 
+            and <paramref name="consequent" /> is <c>false</c>, otherwise - <c>true</c></returns>
+    </member>
+    <member name="M:PX.Common.Func.Id``1">
+      <summary>
+            Returns function that returns its parameter
+            </summary>
+    </member>
+    <member name="M:PX.Common.Func.Memorize``1(System.Func{``0})">
+      <summary>
+            Apply memorizing behavior to the function,
+            which means that original function would be
+            called only once for a certain input parameter
+            </summary>
+      <typeparam name="TOut">Function output result type</typeparam>
+      <param name="originalFunc">Function</param>
+      <returns>Function with memorizing behavior</returns>
+    </member>
+    <member name="M:PX.Common.Func.Memorize``2(System.Func{``0,``1})">
+      <summary>
+            Apply memorizing behavior to the function,
+            which means that original function would be
+            called only once for a certain input parameter
+            </summary>
+      <typeparam name="TIn">Function input parameter type</typeparam>
+      <typeparam name="TOut">Function output result type</typeparam>
+      <param name="originalFunc">Function</param>
+      <returns>Function with memorizing behavior</returns>
+    </member>
+    <member name="M:PX.Common.Func.Memorize``3(System.Func{``0,``1,``2})">
+      <summary>
+            Apply memorizing behavior to the function,
+            which means that original function would be
+            called only once for a certain input parameter
+            </summary>
+      <typeparam name="TIn1">Function first input parameter type</typeparam>
+      <typeparam name="TIn2">Function second input parameter type</typeparam>
+      <typeparam name="TOut">Function output result type</typeparam>
+      <param name="originalFunc">Function</param>
+      <returns>Function with memorizing behavior</returns>
+    </member>
+    <member name="M:PX.Common.Func.Memorize``4(System.Func{``0,``1,``2,``3})">
+      <summary>
+            Apply memorizing behavior to the function,
+            which means that original function would be
+            called only once for a certain input parameter
+            </summary>
+      <typeparam name="TIn1">Function first input parameter type</typeparam>
+      <typeparam name="TIn2">Function second input parameter type</typeparam>
+      <typeparam name="TIn3">Function third input parameter type</typeparam>
+      <typeparam name="TOut">Function output result type</typeparam>
+      <param name="originalFunc">Function</param>
+      <returns>Function with memorizing behavior</returns>
+    </member>
+    <member name="M:PX.Common.Func.Memorize``5(System.Func{``0,``1,``2,``3,``4})">
+      <summary>
+            Apply memorizing behavior to the function,
+            which means that original function would be
+            called only once for a certain input parameter
+            </summary>
+      <typeparam name="TIn1">Function first input parameter type</typeparam>
+      <typeparam name="TIn2">Function second input parameter type</typeparam>
+      <typeparam name="TIn3">Function third input parameter type</typeparam>
+      <typeparam name="TIn4">Function fourth input parameter type</typeparam>
+      <typeparam name="TOut">Function output result type</typeparam>
+      <param name="originalFunc">Function</param>
+      <returns>Function with memorizing behavior</returns>
+    </member>
+    <member name="M:PX.Common.Func.Memorize``6(System.Func{``0,``1,``2,``3,``4,``5})">
+      <summary>
+            Apply memorizing behavior to the function,
+            which means that original function would be
+            called only once for a certain input parameter
+            </summary>
+      <typeparam name="TIn1">Function first input parameter type</typeparam>
+      <typeparam name="TIn2">Function second input parameter type</typeparam>
+      <typeparam name="TIn3">Function third input parameter type</typeparam>
+      <typeparam name="TIn4">Function fourth input parameter type</typeparam>
+      <typeparam name="TIn5">Function fifth input parameter type</typeparam>
+      <typeparam name="TOut">Function output result type</typeparam>
+      <param name="originalFunc">Function</param>
+      <returns>Function with memorizing behavior</returns>
+    </member>
+    <member name="M:PX.Common.Func.Memorize``7(System.Func{``0,``1,``2,``3,``4,``5,``6})">
+      <summary>
+            Apply memorizing behavior to the function,
+            which means that original function would be
+            called only once for a certain input parameter
+            </summary>
+      <typeparam name="TIn1">Function first input parameter type</typeparam>
+      <typeparam name="TIn2">Function second input parameter type</typeparam>
+      <typeparam name="TIn3">Function third input parameter type</typeparam>
+      <typeparam name="TIn4">Function fourth input parameter type</typeparam>
+      <typeparam name="TIn5">Function fifth input parameter type</typeparam>
+      <typeparam name="TIn6">Function sixth input parameter type</typeparam>
+      <typeparam name="TOut">Function output result type</typeparam>
+      <param name="originalFunc">Function</param>
+      <returns>Function with memorizing behavior</returns>
+    </member>
+    <member name="M:PX.Common.Func.Memorize``8(System.Func{``0,``1,``2,``3,``4,``5,``6,``7})">
+      <summary>
+            Apply memorizing behavior to the function,
+            which means that original function would be
+            called only once for a certain input parameter
+            </summary>
+      <typeparam name="TIn1">Function first input parameter type</typeparam>
+      <typeparam name="TIn2">Function second input parameter type</typeparam>
+      <typeparam name="TIn3">Function third input parameter type</typeparam>
+      <typeparam name="TIn4">Function fourth input parameter type</typeparam>
+      <typeparam name="TIn5">Function fifth input parameter type</typeparam>
+      <typeparam name="TIn6">Function sixth input parameter type</typeparam>
+      <typeparam name="TIn7">Function seventh input parameter type</typeparam>
+      <typeparam name="TOut">Function output result type</typeparam>
+      <param name="originalFunc">Function</param>
+      <returns>Function with memorizing behavior</returns>
+    </member>
+    <member name="M:PX.Common.Func.Conjoin``1(System.Func{``0,System.Boolean},System.Func{``0,System.Boolean})">
+      <summary>
+            Combines two Func delagates (AND condition)
+            </summary>
+      <typeparam name="TIn">Function input parameter type</typeparam>
+      <param name="firstFunc">First function</param>
+      <param name="secondFunc">Second function</param>
+      <returns>Returns (firstFunc &amp;&amp; secondFunc)</returns>
+    </member>
+    <member name="M:PX.Common.Func.Disjoin``1(System.Func{``0,System.Boolean},System.Func{``0,System.Boolean})">
+      <summary>
+            Combines two Func delagates (OR condition)
+            </summary>
+      <typeparam name="TIn">Function input parameter type</typeparam>
+      <param name="firstFunc">First function</param>
+      <param name="secondFunc">Second function</param>
+      <returns>Returns (firstFunc || secondFunc)</returns>
+    </member>
+    <member name="M:PX.Common.Func.Negate``1(System.Func{``0,System.Boolean})">
+      <summary>
+            Negates the Func delegate (NOT condition)
+            </summary>
+      <typeparam name="TIn">Function input parameter type</typeparam>
+      <param name="func">Original function</param>
+      <returns>Returns !func</returns>
+    </member>
+    <member name="T:PX.Common.IImplement`1">
+      <summary>
+            Allows to create tricky restrictions for generic parameters.
+            </summary>
+    </member>
+    <member name="T:PX.Common.IExtends`1">
+      <summary>
+            Indicates that the class extends another <typeparamref name="TExtendable" /> class or its descendants.
+            </summary>
+    </member>
+    <member name="T:PX.Common.AtomicLazy`1">
+      <summary>
+            ThreadSafeValueOnly Lazy, doesn't cache exceptions
+            </summary>
+    </member>
+    <member name="M:HttpRequestEx.GetWebsiteUrl(System.Web.HttpRequest)">
+      <summary>
+            Returns url for current website in format http(s)://hostname/
+            This url can be used in external links.
+            </summary>
+      <param name="request">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:HttpRequestEx.GetWebsiteAuthority(System.Web.HttpRequest)">
+      <summary>
+            Returns scheme and hostname for current website.
+            This url can be used in external links.
+            </summary>
+      <param name="request">
+      </param>
+      <returns>
+      </returns>
+    </member>
+  </members>
+</doc>

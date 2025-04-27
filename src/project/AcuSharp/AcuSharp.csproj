@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E5F99047-2F3D-436C-A95B-70CC4CF1F60E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AcuSharp</RootNamespace>
+    <AssemblyName>AcuSharp</AssemblyName>
+    <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <LangVersion>13</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\AcuSharp.xml</DocumentationFile>
+    <RegisterForComInterop>false</RegisterForComInterop>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PX.Api.Webhooks">
+      <HintPath>..\references\PX.Api.Webhooks.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="PX.Api.Webhooks.Abstractions">
+      <HintPath>..\references\PX.Api.Webhooks.Abstractions.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="PX.Common">
+      <HintPath>D:\Projects\Eye4Fraud\Eye4Fraud\Eye4Fraud\Sources\Eye4Fraud.USAePay\src\references\PX.Common.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="PX.Data">
+      <HintPath>..\references\PX.Data.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="RestSharp">
+      <HintPath>D:\Projects\Eye4Fraud\Eye4Fraud\Eye4Fraud\Sources\Eye4Fraud.USAePay\src\references\RestSharp.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Abstraction\ACSPAuditableDAC.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Integration\ACSPRestSharp.cs" />
+    <Compile Include="Integration\Models\ACSPSessionDetails.cs" />
+    <Compile Include="Integration\ACSPWebhookHandlerWithLoginScope.cs" />
+    <Compile Include="Extension\ACSPExtensions.cs" />
+    <Compile Include="GlobalUsings.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
