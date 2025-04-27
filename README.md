@@ -19,6 +19,39 @@ It’s not just another set of random utilities —
 
 ---
 
+## 📦 Installation
+
+### 1. Install AcuSharp via NuGet
+
+You can install AcuSharp using the NuGet Package Manager Console:
+
+```bash
+Install-Package AcuSharp -Version 25.1.1
+```
+Or through Visual Studio:
+
+Right-click your project ➔ Manage NuGet Packages ➔ Browse ➔ Search for AcuSharp ➔ Install.
+
+### 2. Locate the Installed Files
+After installing, go to your solution's packages folder:
+
+packages\AcuSharp.25.1.1\lib\net48\
+
+You will find:
+```
+AcuSharp.dll
+AcuSharp.xml (for IntelliSense documentation)
+```
+### 3. Copy Files to Acumatica bin Folder
+Manually copy the AcuSharp.dll and AcuSharp.xml files into your Acumatica Instance's bin\ directory:
+C:\Program Files (x86)\Acumatica ERP\Sites\YourSite\Bin\
+
+
+✅ This is required because Acumatica Framework needs DLLs physically present in the bin folder.
+
+
+
+
 ## ✨ What's Included in the First Release?
 
 - **`ACSPAuditableDAC`**  
