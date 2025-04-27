@@ -7,12 +7,12 @@
     /// <remarks>
     /// Initializes a new instance of the <see cref="ACSPSessionDetails"/> class with the specified parameters.
     /// </remarks>
-    /// <param name="username"></param>
-    /// <param name="companyName"></param>
-    /// <param name="branchID"></param>
-    /// <param name="screenID"></param>
+    /// <param name="username">The Username that should be used in <see cref="PXLoginScope"/></param>
+    /// <param name="companyName">The Company Name that should be used in <see cref="PXLoginScope"/> (optional) </param>
+    /// <param name="branchID">The BranchID that should be used in <see cref="PXLoginScope"/> (optional) </param>
+    /// <param name="screenID">The ScreenID that should be used in <see cref="PXLoginScope"/> (optional) </param>
     /// <exception cref="ArgumentNullException"></exception>
-    public sealed class ACSPSessionDetails(string username, string companyName, int? branchID = null, string screenID = null)
+    public sealed class ACSPSessionDetails(string username, string companyName = null, int? branchID = null, string screenID = null)
     {
         /// <summary>
         /// The username that will be used to create the <see cref="PXLoginScope"/>.

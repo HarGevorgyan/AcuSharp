@@ -13,17 +13,19 @@
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <LangVersion>13</LangVersion>
-	<!-- NuGet Package Metadata -->
-	<PackageId>AcuSharp</PackageId>
-	<Version>25R1.ACSPV1</Version> <!-- Acumatica 25R1, AcuSharp Version 1 -->
-	<Authors>Harutyun Gevorgyan</Authors>
-	<PackageIcon>docs/Acu#Logo.png</PackageIcon>
-	<Description>A lightweight helper library for professional Acumatica ERP customizations and integrations.</Description>
-	<PackageLicenseExpression>MIT</PackageLicenseExpression>
-	<RepositoryUrl>https://github.com/HarGevorgyan/AcuSharp</RepositoryUrl>
-	<PackageProjectUrl>https://github.com/HarGevorgyan/AcuSharp</PackageProjectUrl>
-	<PackageTags>Acumatica;ERP;CSharp;AcuSharp;Webhooks;RESTAPI;Customizations</PackageTags>
-	<GeneratePackageOnBuild>true</GeneratePackageOnBuild> <!-- Auto-create .nupkg on Release build -->
+    <!-- NuGet Package Metadata -->
+    <PackageId>AcuSharp</PackageId>
+    <Version>25.1.1</Version>
+    <!-- Acumatica 25R1, AcuSharp Version 1 -->
+    <Authors>Harutyun Gevorgyan</Authors>
+    <PackageIcon>../../../docs/Acu#Logo.png</PackageIcon>
+    <Description>A lightweight helper library for professional Acumatica ERP customizations and integrations.</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/HarGevorgyan/AcuSharp</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/HarGevorgyan/AcuSharp</PackageProjectUrl>
+    <PackageTags>Acumatica;ERP;CSharp;AcuSharp;Webhooks;RESTAPI;Customizations</PackageTags>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <!-- Auto-create .nupkg on Release build -->
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -43,6 +45,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\AcuSharp.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="PX.Api.Webhooks">
